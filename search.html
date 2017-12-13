@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MMDb - Search</title>
+    <link rel="icon" href="images/favicon.png">
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!--Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+
+
+    <!-- Propeller css -->
+    <link href="css/propeller.min.css" rel="stylesheet">
+
+    <!-- Custom css -->
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+    
+    <script>
+        
+        $("#loadButton").click(loadItems);
+        
+        function loadItems() {
+
+        table
+            .where({
+                deleted: false
+            })
+            .read()
+            .then(function (items) {
+                //console.log(items);
+                $("#cards").empty();
+                items.forEach(function (item) {
+                    createCard(item);
+                });
+            }, handleError);
+    }
+
+    function createCard(item) {
+        console.log(item);
+
+        var html =
+            `<div class="pmd-card pmd-card-default pmd-z-depth pmd-card-custom-form">
+                <div class="pmd-card-title">
+                    <h2 class="pmd-card-title-text">` +
+            item.name + `</h2>
+                    <span class="pmd-card-subtitle-text">` + item.year + `</span>
+                </div>
+            </div>`;
+
+        $("#cards").append(html);
+    }
+    </script>
+    
+
+<body>
+
+    <!-- Nav menu with side menu -->
+    <nav class="navbar navbar-inverse navbar-fixed-top pmd-navbar pmd-z-depth">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button class="pmd-ripple-effect navbar-toggle pmd-navbar-toggle" type="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="index.html" class="navbar-brand navbar-brand-custome">
+                    <img class="small-icon" src="images/favicon.png">
+                    <img class="large-icon" src="images/brand-logo.png">
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse pmd-navbar-sidebar">
+                <div class="dropdown pmd-dropdown pmd-user-info pull-right">
+                    <a href="javascript:void(0);" class="btn-user dropdown-toggle media" data-toggle="dropdown" data-sidebar="true" aria-expanded="false">
+                        <div class="media-left">
+                            <img class="avatar-img" src="images/dude.jpg" width="40" height="40" alt="avatar">
+                        </div>
+                        <div class="media-body media-middle">
+                            Asher Lloyd
+                        </div>
+                        <div class="media-right media-middle">
+                            <i class="material-icons pmd-sm">more_vert</i>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        <li>
+                            <a href="javascript:void(0);">Edit Profile</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="nav navbar-nav">
+                    <!--<li><a class="pmd-ripple-effect" href="javascript:void(0);">Link <span class="sr-only">(current)</span></a></li>
+			<li><a class="pmd-ripple-effect" href="javascript:void(0);">Link</a></li>-->
+                    <li class="dropdown pmd-dropdown">
+                        <a data-toggle="dropdown" class="pmd-ripple-effect dropdown-toggle" data-sidebar="true" href="javascript:void(0);">Clubs
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="pmd-ripple-effect" href="clubSummaryEP.html">Sigma Rho &#40;&Sigma;&Rho;&#41;</a>
+                            </li>
+                            <li>
+                                <a class="pmd-ripple-effect" href="clubSummaryPKA.html">Phi Kappa Alpha &#40;&Phi;&Kappa;&Alpha;&#41;</a>
+                            </li>
+                            <li>
+                                <a class="pmd-ripple-effect" href="clubSummaryXBX.html">Chi Beta Chi &#40;&Chi;&Beta;&Chi;&#41;</a>
+                            </li>
+                            <li>
+                                <a class="pmd-ripple-effect" href="clubSummaryXCD.html">Xi Chi Delta &#40;&Xi;&Chi;&Delta;&#41;</a>
+                            </li>
+                            <li>
+                                <a class="pmd-ripple-effect" href="clubSummaryON.html">Theta Nu &#40;&Theta;&Nu;&#41;</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown pmd-dropdown">
+                        <a data-toggle="dropdown" class="pmd-ripple-effect dropdown-toggle" data-sidebar="true" href="javascript:void(0);"> Years
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="pmd-ripple-effect" href="2017YearDetails.html">2017</a>
+                            </li>
+                            <li>
+                                <a class="pmd-ripple-effect" href="2016YearDetails.html">2016</a>
+                            </li>
+                            <li>
+                                <a class="pmd-ripple-effect" href="2015YearDetails.html">2015</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="pmd-ripple-effect" href="year-summary.html">All Years</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-left mob-search-fix">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <button type="submit" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect mob-search-icon"><i class="material-icons md-light pmd-sm">search</i></button>
+                    </div>
+                    <button type="submit" class="btn btn-default dsk-search" onclick="loadItems()">Search</button>
+                </form>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+        <div class="pmd-sidebar-overlay"></div>
+    </nav>
+
+    <main class="container">
+
+        <section>
+            <h1 class="pmd-display3"> Search Results </h1>           
+
+            <!--Media, Title, and Action Area -->
+            <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
+                <!-- Card media-->
+                <a href="ClubShowDetails.html">
+                    <div class="pmd-card-media">
+                        <!-- Card media image -->
+                        <div class="media-left media-middle column">
+                            <img src="images/mm-girls.jpg" class="search-thumbnail">
+                        </div>
+
+                        <!-- Card media heading -->
+                        <div class="media-body">
+                            <h2 class="pmd-card-title-text">A French Resolution - &Phi;&Kappa;&Alpha;</h2>
+                            <h3> 2017 </h3>
+                            <p>1
+                                <sup>st</sup> place</p>
+                            <p class="pmd-card-subtitle-text">Directors: Caitlyn Montgomery, Blake Hayes, Connor Glasscock, Wyatt Eason, Mackenzie Pfister</p>
+
+                        </div>
+
+                        <!-- Card action -->
+                        <div class="pmd-card-actions">
+
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+
+        </section>
+        
+        <div class="" id="cards">
+        
+        </div>
+    </main>
+
+    <footer>
+
+        <img class="footer-logo" src="images/mm-old-logo.png">
+
+        <div class="footer-content">
+
+            <h1>Makin' Music</h1>
+
+            <p>&copy; 2017 Freed-Hardeman University</p>
+            <p>Made with ❤️ by FHU students.</p>
+            <div class="smicon-btns">
+                <a href="#">
+                    <img src="images/facebook.png">
+                </a>
+                <a href="#">
+                    <img src="images/instagram.png">
+                </a>
+                <a href="#">
+                    <img src="images/twitter.png">
+                </a>
+                <a href="#">
+                    <img src="images/youtube.png">
+                </a>
+            </div>
+        </div>
+
+    </footer>
+
+
+    <!-- jQuery before Propeller.js -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/propeller.min.js"></script>
+
+</body>
+
+</html>
